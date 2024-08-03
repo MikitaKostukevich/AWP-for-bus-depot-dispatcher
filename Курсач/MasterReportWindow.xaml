@@ -1,0 +1,16 @@
+﻿<Window x:Class="Курсач.MasterReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создать отчет" Height="300" Width="400">
+    <Grid Margin="0,0,0,-163">
+        <StackPanel Margin="10,10,10,68">
+            <TextBlock Text="Выберите мастера:"/>
+            <ComboBox x:Name="MasterComboBox" DisplayMemberPath="MasterName" Margin="0,0,0,20"/>
+            <TextBlock Text="Выберите заявку на ремонт:"/>
+            <ComboBox x:Name="RepairRequestComboBox" DisplayMemberPath="Description" Margin="0,0,0,20"/>
+            <TextBlock Text="Введите текст отчета:"/>
+            <TextBox x:Name="ReportTextBox" Margin="0,0,0,20" Height="71" AcceptsReturn="True"/>
+            <Button Content="Сохранить отчет" Click="SaveReportButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

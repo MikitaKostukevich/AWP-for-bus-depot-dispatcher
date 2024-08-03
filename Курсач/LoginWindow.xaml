@@ -1,0 +1,17 @@
+﻿<Window x:Class="Курсач.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" Height="200" Width="300">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Логин:" />
+            <TextBox x:Name="UsernameTextBox" Width="200" Margin="0,10,0,10" />
+
+            <TextBlock Text="Пароль:" />
+            <PasswordBox x:Name="PasswordBox" Width="200" Margin="0,10,0,10" />
+
+            <Button Content="Авторизироваться" Click="LoginButton_Click" Width="200" />
+            <Button Content="Зарегестрироваться" Click="RegisterButton_Click" Width="200" Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>

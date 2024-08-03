@@ -1,0 +1,84 @@
+﻿<Window x:Class="Курсач.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсач"
+        mc:Ignorable="d"
+        Title="Маршруты" Height="450" Width="1390">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Номер маршрута:" VerticalAlignment="Center"/>
+            <TextBox x:Name="RouteNumberTextBox" Width="150" Margin="5"/>
+            <TextBlock Text="Автобус:" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="BusComboBox" Width="150" Margin="5">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Name"/>
+                                    <Binding Path="Model"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="ФИО водителя:" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="DriverComboBox" Width="200" Margin="5" DisplayMemberPath="FullName"/>
+            <TextBlock Text="Начальный пункт:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="StartPointComboBox" DisplayMemberPath="Name" Width="150" Margin="5"/>
+            <TextBlock Text="Конечный пункт:" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="EndPointComboBox" DisplayMemberPath="Name" Width="150" Margin="5"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="370,0,0,0"/>
+            <TextBox x:Name="SearchTextBox" Width="75" Margin="5,5,5,5"/>
+            <Button x:Name="SearchButton" Content="Поиск" Click="Search_Click" Margin="5,5,5,5"/>
+            <TextBlock Text="Сортировать по:" VerticalAlignment="Center"/>
+            <ComboBox x:Name="SortByComboBox" Width="100" Margin="5">
+                <ComboBoxItem Content="Номер маршрута"/>
+                <ComboBoxItem Content="Автобус"/>
+                <ComboBoxItem Content="Водитель"/>
+                <ComboBoxItem Content="Начальная точка"/>
+                <ComboBoxItem Content="Конечная точка"/>
+            </ComboBox>
+            <TextBlock Text="Направление:" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="SortDirectionComboBox" Width="100" Margin="5">
+                <ComboBoxItem Content="Возрастание"/>
+                <ComboBoxItem Content="Убывание"/>
+            </ComboBox>
+            <Button Content="Сортировать" Click="SortRoutes_Click" Margin="5"/>
+            <TextBlock Text="Фильтровать по автобусу:" VerticalAlignment="Center" Margin="5"/>
+            <ComboBox x:Name="BusNameFilterComboBox" Width="100" Margin="5">
+            </ComboBox>
+            <Button Content="Применить" Click="FilterRoutesByBusNameButton_Click" Margin="5"/>
+
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5,0,10,250">
+            <Button Content="Открыть окно автобусов" Click="OpenBusWindow_Click" Margin="15,1,1,1" Height="30" />
+            <Button Content="Открыть окно водителей" Click="GoToDriverWindow_Click" VerticalAlignment="Center" Margin="10" Height="31"/>
+            <Button Content="Открыть окно точек маршрута" Click="OpenPointsWindow_Click" Height="30" />
+            <Button Content="Открыть окно мастеров" Click="ManageMastersButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Margin="10,0,0,0"/>
+            <Button x:Name="RepairRequestButton" Content="Создать заявку на ремонт" Click="OpenReportWindow_Click" Height="30" Margin="10,0,0,0" />
+            <Button x:Name="ReportRouteButton" Content="Создать отчёт о маршруте" Click="OpenOtchetWindow_Click" Margin="10,0,0,0" Height="30"/>
+            <Button x:Name="RepairReportButton" Content="Создать отчет о ремонте" Click="OpenMasterReportWindow_Click" Margin="10,0,0,0" Height="30"/>
+            <Button Content="Обновить" Click="Refresh_Click" Margin="10,0,0,0" Height="30"/>
+            <Button Content="Показать инструкцию" Click="ShowInstructions_Click" Margin="10" Height="30"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="7,10,10,10">
+            <Button x:Name="AddRouteButton" Content="Добавить маршрут" Click="AddRoute_Click" Margin="5"/>
+            <Button x:Name="EditRouteButton" Content="Изменить маршрут" Click="EditRoute_Click" Margin="5"/>
+            <Button x:Name="DeleteRouteButton" Content="Удалить маршрут" Click="DeleteRoute_Click" Margin="5"/>
+        </StackPanel>
+
+        <ListBox x:Name="RoutesListBox" Grid.Row="2" Margin="1,82,1,1" DisplayMemberPath="DisplayText" SelectionChanged="RoutesListBox_SelectionChanged"/>
+    </Grid>
+</Window>
